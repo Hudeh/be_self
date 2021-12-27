@@ -1,0 +1,47 @@
+CREATE TABLE app(
+    appid SERIAL PRIMARY KEY NOT NULL,
+    appname TEXT NOT NULL,
+    organizationkey INTEGER NOT NULL,
+    appkey TEXT NOT NULL
+);
+
+CREATE TABLE callback(
+    urlkey SERIAL PRIMARY KEY NOT NULL,
+    callbackurl TEXT NOT NULL,
+    appkey INTEGER NOT NULL
+);
+
+CREATE TABLE organization( 
+    organizationkey SERIAL PRIMARY KEY NOT NULL, 
+    organizationname TEXT NOT NULL, 
+    organizationcountry TEXT NOT NULL, 
+    employeename TEXT NOT NULL, 
+    officialemail TEXT NOT NULL, 
+    phonenumber TEXT NOT NULL,
+    clientid TEXT NOT NULL,
+    status TEXT NULL
+);
+
+CREATE TABLE role(
+    rolekey SERIAL PRIMARY KEY NOT NULL,
+    rolename TEXT NOT NULL
+);
+
+INSERT INTO “role”  
+(“rolekey”, “rolename”)  
+VALUES  
+(1, 'Admin’);
+INSERT INTO “role”  
+(“rolekey”, “rolename”)  
+VALUES  
+(2, 'Customer’);
+
+CREATE TABLE customer(
+    customerid SERIAL PRIMARY KEY NOT NULL,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL,
+    authkey TEXT NOT NULL,
+    rolekey INTEGER NOT NULL,
+    pin TEXT NOT NULL,
+    clientid TEXT NOT NULL
+);
